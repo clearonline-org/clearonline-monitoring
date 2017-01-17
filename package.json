@@ -1,0 +1,30 @@
+{
+  "name": "clearonline-monitoring",
+  "version": "1.0.0",
+  "description": "Find server locations that serve a given url",
+  "main": "index.js",
+  "dependencies": {
+    "claudia": "^2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clearonline-org/clearonline-monitoring.git"
+  },
+  "keywords": [
+    "geo",
+    "location",
+    "http",
+    "https",
+    "networking"
+  ],
+  "author": "Marcellin Nshimiyimana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clearonline-org/clearonline-monitoring/issues"
+  },
+  "homepage": "https://github.com/clearonline-org/clearonline-monitoring#readme"
+}
