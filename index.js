@@ -2,19 +2,19 @@
 * @Author: mars
 * @Date:   2017-01-17T00:19:37-05:00
 * @Last modified by:   mars
-* @Last modified time: 2017-01-17T02:31:33-05:00
+* @Last modified time: 2017-01-17T23:06:03-05:00
 */
 
+'use strict';
 
 // START helper
 function urlToDamin(url) {
-	'use strict';
 	url = url || '';
 	let domain = url.trim().split('http://');
 	if (domain.length < 2) {
 		domain = url.split('https://');
 	}
-	return domain[1];
+	return (domain[1] || '').split('/')[0];
 }
 // END helper
 
@@ -42,7 +42,6 @@ api.registerAuthorizer('clearonlineMonitoring', {
 });
 
 api.get('/', function () {
-	'use strict';
 	let title = 'Clearonline Monitoring', description = 'Find out where in the world you are sending your info!';
 	return { title, description };
 });
@@ -54,30 +53,41 @@ api.get('/', function () {
  * must start with http:// or https://
  */
 api.get('/find-location', request => {
-	'use strict';
 	let domainName = urlToDamin(request.queryString.url);
 
-	// return siteMonitoring.locateByDomain(domainName)
-	// .then(result => {
-	// 		// { origin, destination }
-	//     // origin = { region_code, latitude, longitude }
-	//     // destination = [ { region_code, latitude, longitude } ]
-	// 		return result.destination[0];
-	// });
-	return domainName;
+	return siteMonitoring.locateByDomain(domainName)
+	.then(result => {
+			// { origin, destination }
+	    // origin = { region_code, latitude, longitude }
+	    // destination = [ { region_code, latitude, longitude } ]
+			return result.destination[0];
+	});
 }, { customAuthorizer: 'clearonlineMonitoring' });
 
 /**
  * find all locations but do not log the request
  */
 api.get('/analyse', request => {
-	'use strict';
-	return 'OK for ' + request.context.authorizerPrincipalId;
+
+	let domainName = urlToDamin(request.queryString.url);
+
+	return siteMonitoring.locateByDomain(domainName)
+	.then(result => {
+			return result;
+	});
+
 }, { customAuthorizer: 'clearonlineMonitoring' });
 /**
  * find all locations and log the request in dynamo-db
  */
 api.get('/monitor', request => {
-	'use strict';
-	return 'OK for ' + request.context.authorizerPrincipalId;
+
+	let domainName = urlToDamin(request.queryString.url);
+
+	return siteMonitoring.locateByDomain(domainName)
+	.then(result => {
+			// @TODO log to dynamo-db
+			return result;
+	});
+
 }, { customAuthorizer: 'clearonlineMonitoring' });

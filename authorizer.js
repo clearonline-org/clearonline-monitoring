@@ -2,13 +2,13 @@
 * @Author: mars
 * @Date:   2017-01-16T23:59:10-05:00
 * @Last modified by:   mars
-* @Last modified time: 2017-01-17T02:03:02-05:00
+* @Last modified time: 2017-01-17T22:39:16-05:00
 */
+'use strict';
 
 
 
 const generatePolicy = function(principalId, effect, resource) {
-  'use strict';
     var authResponse = {};
 
     authResponse.principalId = principalId;
@@ -33,7 +33,6 @@ const generatePolicy = function(principalId, effect, resource) {
 };
 
 exports.handler =  (event, context, callback) => {
-  'use strict';
   console.log('got event', event);
     var token = event.authorizationToken;
     // Call oauth provider, crack jwt token, etc.
