@@ -2,11 +2,9 @@
 * @Author: mars
 * @Date:   2017-01-16T23:59:10-05:00
 * @Last modified by:   mars
-* @Last modified time: 2017-01-17T22:39:16-05:00
+* @Last modified time: 2017-01-17T23:58:30-05:00
 */
 'use strict';
-
-
 
 const generatePolicy = function(principalId, effect, resource) {
     var authResponse = {};
@@ -45,9 +43,10 @@ exports.handler =  (event, context, callback) => {
     restApiId = apiGatewayArnTmp[0],
     stage = apiGatewayArnTmp[1];
 
+    let genToken = process.env.GENERATED_TOKEN;
 
     switch (token.toLowerCase()) {
-        case 'bearer 8476140343958127-ugvvesoxdjdvy-2046773791185872':
+        case genToken:
 
           let resource1 = 'arn:aws:execute-api:' + region + ':'  + awsAccountId + ':' + restApiId + '/' + stage + '/GET/analyse';
           let resource2 = 'arn:aws:execute-api:' + region + ':'  + awsAccountId + ':' + restApiId + '/' + stage + '/GET/find-location';
