@@ -2,7 +2,7 @@
 * @Author: mars
 * @Date:   2017-01-16T23:59:10-05:00
 * @Last modified by:   mars
-* @Last modified time: 2017-01-17T23:58:30-05:00
+* @Last modified time: 2017-01-18T00:08:39-05:00
 */
 'use strict';
 
@@ -45,8 +45,8 @@ exports.handler =  (event, context, callback) => {
 
     let genToken = process.env.GENERATED_TOKEN;
 
-    switch (token.toLowerCase()) {
-        case genToken:
+    switch (token) {
+        case `Bearer ${genToken}`:
 
           let resource1 = 'arn:aws:execute-api:' + region + ':'  + awsAccountId + ':' + restApiId + '/' + stage + '/GET/analyse';
           let resource2 = 'arn:aws:execute-api:' + region + ':'  + awsAccountId + ':' + restApiId + '/' + stage + '/GET/find-location';
