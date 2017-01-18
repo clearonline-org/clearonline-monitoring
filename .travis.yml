@@ -1,7 +1,17 @@
-# @Author: mars
-# @Date:   2017-01-17T01:45:06-05:00
-# @Last modified by:   mars
-# @Last modified time: 2017-01-17T01:45:06-05:00
 
+language: node_js
 
+# test on two node.js versions: 0.6 and 0.8
+node_js:
+  - 4.3.1
+  - 6.9.1
 
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+# notifications:
+#   irc: "irc.freenode.org#travis"
+install:
+    npm install
+
+script:
+    npm test
