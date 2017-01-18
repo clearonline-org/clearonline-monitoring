@@ -4,11 +4,18 @@
   "description": "Find server locations that serve a given url",
   "main": "index.js",
   "dependencies": {
+    "claudia-api-builder": "^2.3.1",
+    "site-monitoring": "^1.0.11"
+  },
+  "devDependencies": {
     "claudia": "^2.5.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "test": "jshint index.js && node __tests__/index-test.js",
+    "create-authorizer": "claudia create --name clearonlineMonitoring --region us-east-1 --handler authorizer.handler --config claudia-auth.json --profile mars-the-bot",
+    "update-authorizer": "claudia update --config claudia-auth.json --profile mars-the-bot",
+    "create-api": "claudia create --name clearonlineMonitoringApi --region us-east-1 --api-module index --config claudia-api.json --profile mars-the-bot",
+    "update-api": "claudia update --config claudia-api.json --profile mars-the-bot"
   },
   "repository": {
     "type": "git",

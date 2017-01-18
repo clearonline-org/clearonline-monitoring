@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "clearonlineMonitoringApi-executor",
+    "name": "clearonlineMonitoringApi",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "bucp9lifrg",
+    "module": "index"
+  }
+}

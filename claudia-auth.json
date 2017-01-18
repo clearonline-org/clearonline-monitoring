@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "clearonlineMonitoring-executor",
+    "name": "clearonlineMonitoring",
+    "region": "us-east-1"
+  }
+}
