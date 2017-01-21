@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "claudia-api-builder": "^2.3.1",
-    "site-monitoring": "^1.0.11"
+    "site-monitoring": "^1.5.0"
   },
   "devDependencies": {
     "claudia": "^2.5.0"

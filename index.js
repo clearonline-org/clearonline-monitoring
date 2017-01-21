@@ -2,7 +2,7 @@
 * @Author: mars
 * @Date:   2017-01-17T00:19:37-05:00
 * @Last modified by:   mars
-* @Last modified time: 2017-01-17T23:06:03-05:00
+* @Last modified time: 2017-01-20T23:42:19-05:00
 */
 
 'use strict';
@@ -69,11 +69,21 @@ api.get('/find-location', request => {
  */
 api.get('/analyse', request => {
 
-	let domainName = urlToDamin(request.queryString.url);
+	let sourceIp = request.context.sourceIp,
+			country = request.headers['CloudFront-Viewer-Country'];
+	console.log('country of origin', sourceIp, country);
 
-	return siteMonitoring.locateByDomain(domainName)
-	.then(result => {
+	let domainName = urlToDamin(request.queryString.url);
+	return siteMonitoring.locateIp(sourceIp)
+	.then(origin => {
+		// locateByDomain set origin to me
+		// so i will change that to sender of the request instead
+		return siteMonitoring.locateByDomain(domainName)
+		.then(result => {
+			result = Object.assign(result, { origin });
 			return result;
+		});
+
 	});
 
 }, { customAuthorizer: 'clearonlineMonitoring' });
